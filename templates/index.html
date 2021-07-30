@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+  <meta charset="UTF-8">
+  <title>Car Performance Predictor</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}?v=1.0.0">
+
+</head>
+
+<body>
+ <div class="login">
+	<h1>Car Performance Prediction</h1>
+     <h3> Enter the following values to predict the mpg value for the car</h3>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('per_predict')}}"method="post">
+    	
+      <input type="number" name="cylinders" placeholder="Number of cylinders" required="required" />
+      <input type="number" step=any name="displacement" placeholder="Displacement" required="required" />
+		  <input type="number" name="horsepower" placeholder="HorsePower" required="required" />
+      <input type="number" name="weight" placeholder="Weight" required="required" />
+      <input type="number" step=any name="acceleration" placeholder="Acceleration" required="required" />
+      <input type="number" name="model year" placeholder="Model Year" required="required" />
+      <input type="number" name="origin" placeholder="Origin" required="required" />
+      <input type="text" name="car name" placeholder="Car Name" required="required" />
+
+      <button type="submit" class="btn">Predict</button>
+      
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+</body>
+</html>
