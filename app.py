@@ -11,17 +11,17 @@ from joblib import load
 
 app = Flask("__name__")
 
-encode = load('c_encoder.save')
-scaler = load('scaler.save')
-model = load('model.save')
+encode = load('joblib/c_encoder.save')
+scaler = load('joblib/scaler.save')
+model = load('joblib/model.save')
 
 def performance(mpg):
     label = ""
     if(mpg<20):
         label = "Low Performance"
-    elif(mpg>=20 and mpg<=35):
+    elif(mpg>=20 and mpg<=30):
         label = "Moderate Performance"
-    elif(mpg>35):
+    elif(mpg>30):
         label = "High Performance"
     else:
         label = "Unknown"
@@ -51,7 +51,7 @@ def per_predict():
     print(mpg)
     per_label = performance(mpg)
     print(per_label)
-    return render_template('index.html', prediction_text= 'Car Performance : {label} \nMiles Per Galon (MPG) : {:.2f}'.format(mpg[0],label=per_label))
+    return render_template('index.html', prediction_text= 'Car Performance : {label}  \nMiles Per Galon (MPG) : {:.2f}'.format(mpg[0],label=per_label))
 
 if __name__ == "__main__":
     app.run(debug=True)
